@@ -1,0 +1,44 @@
+sources:
+{
+	gnsstestComponent.c
+    skyhook/src/protocol/sky_protocol.c
+    skyhook/src/security/mauth.c
+    skyhook/src/security/sky_crypt.c
+    skyhook/src/utilities/sky_print.c
+    skyhook/src/utilities/sky_util.c
+    skyhook/src/utilities/sky_xml.c
+    skyhook/external/HMAC/hmac256.c
+    skyhook/external/tiny-AES128-C/aes_th.c
+}
+
+cflags:
+{
+    -I$LEGATO_ROOT/3rdParty/jansson/android/
+    -I$LEGATO_ROOT/3rdParty/jansson/src/
+    -I${LEGATO_ROOT}/modules/WiFi/service/platformAdaptor/inc/
+    -I$PWD/gnsstestComponent/skyhook/inc/    
+    -I$PWD/gnsstestComponent/skyhook/external/HMAC/
+    -I$PWD/gnsstestComponent/skyhook/external/tiny-AES128-C/
+    -g
+}
+
+//ldflags: { -L${LEGATO_ROOT}/build/wp76xx/system/app/wifi/staging/read-only/lib/ -lComponent_wifi}
+
+requires:
+{
+    api:
+    {       
+        le_pm.api
+        positioning/le_pos.api
+        positioning/le_posCtrl.api
+        positioning/le_gnss.api
+        le_wdog.api       
+        modemServices/le_mdc.api
+        modemServices/le_mrc.api
+        modemServices/le_sim.api
+        modemServices/le_info.api
+        le_data.api
+        ${LEGATO_ROOT}/interfaces/wifi/le_wifiClient.api
+        //le_appCtrl.api
+    }
+}
